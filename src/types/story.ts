@@ -39,6 +39,16 @@ export interface StoryData {
   closingNote: string;
 }
 
+const storyImageAssets = import.meta.glob<string>(
+  [
+    '../assets/images/*.jpg',
+    '../assets/images/*.jpeg',
+    '../assets/images/*.png',
+    '../assets/images/*.mp4',
+  ],
+  { eager: true, query: '?url', import: 'default' },
+);
+
 export const defaultCarolineStory: StoryData = {
   recipientName: "Caroline",
   petName: "Hammer headed foodian",
@@ -368,3 +378,21 @@ export const defaultCarolineStory: StoryData = {
   finalQuote: "“Count your age by friends, not years. Count your life by smiles, not tears.”",
   closingNote: "Until the next chapter unfolds..."
 };
+
+const storyPolaroidGroups = [
+  defaultCarolineStory.chapter1Polaroids,
+  defaultCarolineStory.chapter2FriendTribute.polaroids,
+  defaultCarolineStory.chapter3LeftPolaroids,
+  defaultCarolineStory.chapter3RightPolaroids,
+  defaultCarolineStory.chapter4Polaroids ?? [],
+];
+
+for (const polaroids of storyPolaroidGroups) {
+  for (const polaroid of polaroids) {
+    const assetPath = polaroid.imageSrc.replace(
+      '/src/assets/images/',
+      '../assets/images/',
+    );
+    polaroid.imageSrc = storyImageAssets[assetPath] ?? polaroid.imageSrc;
+  }
+}
