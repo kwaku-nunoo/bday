@@ -1,0 +1,529 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-handwriting: 'Patrick Hand', 'Architects Daughter', 'Kalam', 'Caveat', cursive;
+    --font-body: 'Lora', Georgia, serif;
+  }
+}
+
+.font-serif-heading {
+  font-family: var(--font-serif);
+}
+
+.font-display-classic {
+  font-family: var(--font-display);
+}
+
+.font-handwriting-script,
+.font-david-mergens {
+  font-family: var(--font-handwriting);
+  letter-spacing: 0.015em;
+}
+
+.font-literary-body {
+  font-family: var(--font-body);
+}
+
+.font-relyagih {
+  font-family: 'Italiana', 'Bodoni Moda', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.16em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* Vintage Paper & Grain Textures */
+.bg-parchment {
+  background-color: #F8F5EE;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(214, 198, 175, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(197, 160, 89, 0.14) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(245, 241, 232, 1) 0px, rgba(238, 231, 218, 1) 100%);
+}
+
+.bg-book-cover,
+.rough-vintage-leather {
+  background-color: #38251B;
+  background-image: 
+    radial-gradient(ellipse at 50% 40%, rgba(92, 62, 45, 0.5) 0%, rgba(32, 20, 14, 0.96) 100%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.09) 0px, rgba(0, 0, 0, 0.09) 2px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.035) 0px, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 3px),
+    radial-gradient(#4d3527 15%, transparent 16%),
+    radial-gradient(#261811 15%, transparent 16%);
+  background-size: 100% 100%, 6px 6px, 6px 6px, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 4px 4px;
+  box-shadow: 
+    inset 0 0 80px rgba(10, 6, 4, 0.88),
+    inset 5px 0 15px rgba(0, 0, 0, 0.6),
+    inset -3px 0 10px rgba(255, 255, 255, 0.08);
+}
+
+/* Corkboard Pinboard Texture for Chapter 3 Memory Wall */
+.bg-corkboard {
+  background-color: #C8955D;
+  background-image:
+    radial-gradient(#9E6C3B 12%, transparent 14%),
+    radial-gradient(#DEAB72 12%, transparent 14%),
+    radial-gradient(#7E4C20 10%, transparent 12%),
+    radial-gradient(#B8844D 15%, transparent 16%);
+  background-size: 14px 14px, 18px 18px, 22px 22px, 10px 10px;
+  background-position: 0 0, 7px 7px, 3px 11px, 5px 2px;
+}
+
+/* Gold Foil Effect */
+.gold-foil-text {
+  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 35%, #AA771C 60%, #FFDF73 85%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  filter: drop-shadow(0 1px 1px rgba(255, 215, 0, 0.2));
+}
+
+.gold-foil-border {
+  border-image: linear-gradient(135deg, #F3E5AB, #D4AF37, #AA771C, #FFDF73) 1;
+}
+
+/* Deckle Edge & Paper Shadow */
+.deckle-edge {
+  box-shadow: 
+    0 1px 3px rgba(44, 35, 30, 0.08),
+    0 8px 24px rgba(44, 35, 30, 0.12),
+    inset 0 0 40px rgba(197, 160, 89, 0.04);
+}
+
+.page-spine-shadow-left {
+  background: linear-gradient(to right, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.02) 18%, transparent 35%);
+}
+
+.page-spine-shadow-right {
+  background: linear-gradient(to left, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.02) 18%, transparent 35%);
+}
+
+.page-sheet {
+  contain: layout paint;
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Washi Tape styling */
+.washi-tape {
+  background: rgba(237, 226, 206, 0.75);
+  backdrop-filter: blur(1px);
+  border-left: 2px dashed rgba(180, 160, 130, 0.4);
+  border-right: 2px dashed rgba(180, 160, 130, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Perspective setup */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* ========================================================================= */
+/* TACTILE 3D PAGE TURN ANIMATIONS (1800ms DELIBERATE, LUXURIOUS REAL CURVE) */
+/* ========================================================================= */
+
+.page-turning-forward {
+  animation: pageFlipForward 1800ms cubic-bezier(0.38, 0.04, 0.22, 1) forwards;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform, filter, box-shadow;
+}
+
+.page-turning-backward {
+  animation: pageFlipBackward 1800ms cubic-bezier(0.38, 0.04, 0.22, 1) forwards;
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  will-change: transform, filter, box-shadow;
+}
+
+@keyframes pageFlipForward {
+  0% {
+    transform: perspective(2500px) rotateY(0deg) rotateZ(0deg) skewY(0deg) translateZ(0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    filter: brightness(1) contrast(1);
+  }
+  18% {
+    /* Corner lifts first with slight paper arch */
+    transform: perspective(2500px) rotateY(-22deg) rotateZ(1.8deg) skewY(-2deg) translateZ(24px);
+    box-shadow: -18px 18px 45px rgba(0, 0, 0, 0.28);
+    filter: brightness(0.97) contrast(1.02);
+  }
+  42% {
+    /* Deep paper roll upward into ambient light */
+    transform: perspective(2500px) rotateY(-68deg) rotateZ(2.8deg) skewY(-1.2deg) translateZ(60px);
+    box-shadow: -45px 35px 75px rgba(0, 0, 0, 0.38);
+    filter: brightness(0.92) contrast(1.06);
+  }
+  50% {
+    /* Passing perpendicular threshold */
+    transform: perspective(2500px) rotateY(-90deg) rotateZ(1.2deg) skewY(0deg) translateZ(65px);
+    box-shadow: -35px 30px 65px rgba(0, 0, 0, 0.32);
+    filter: brightness(0.9) contrast(1.08);
+  }
+  68% {
+    /* Reverse leaf curves downward onto left page */
+    transform: perspective(2500px) rotateY(-124deg) rotateZ(-1.8deg) skewY(1.4deg) translateZ(48px);
+    box-shadow: -28px 22px 55px rgba(0, 0, 0, 0.26);
+    filter: brightness(0.95) contrast(1.03);
+  }
+  88% {
+    /* Landing with delicate paper flex */
+    transform: perspective(2500px) rotateY(-172deg) rotateZ(-0.6deg) skewY(0.4deg) translateZ(14px);
+    box-shadow: -10px 10px 25px rgba(0, 0, 0, 0.16);
+    filter: brightness(0.99) contrast(1.01);
+  }
+  100% {
+    /* Resting flush against left spread */
+    transform: perspective(2500px) rotateY(-180deg) rotateZ(0deg) skewY(0deg) translateZ(0);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+@keyframes pageFlipBackward {
+  0% {
+    transform: perspective(2500px) rotateY(0deg) rotateZ(0deg) skewY(0deg) translateZ(0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    filter: brightness(1) contrast(1);
+  }
+  18% {
+    transform: perspective(2500px) rotateY(22deg) rotateZ(-1.8deg) skewY(2deg) translateZ(24px);
+    box-shadow: 18px 18px 45px rgba(0, 0, 0, 0.28);
+    filter: brightness(0.97) contrast(1.02);
+  }
+  42% {
+    transform: perspective(2500px) rotateY(68deg) rotateZ(-2.8deg) skewY(1.2deg) translateZ(60px);
+    box-shadow: 45px 35px 75px rgba(0, 0, 0, 0.38);
+    filter: brightness(0.92) contrast(1.06);
+  }
+  50% {
+    transform: perspective(2500px) rotateY(90deg) rotateZ(-1.2deg) skewY(0deg) translateZ(65px);
+    box-shadow: 35px 30px 65px rgba(0, 0, 0, 0.32);
+    filter: brightness(0.9) contrast(1.08);
+  }
+  68% {
+    transform: perspective(2500px) rotateY(124deg) rotateZ(1.8deg) skewY(-1.4deg) translateZ(48px);
+    box-shadow: 28px 22px 55px rgba(0, 0, 0, 0.26);
+    filter: brightness(0.95) contrast(1.03);
+  }
+  88% {
+    transform: perspective(2500px) rotateY(172deg) rotateZ(0.6deg) skewY(-0.4deg) translateZ(14px);
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.16);
+    filter: brightness(0.99) contrast(1.01);
+  }
+  100% {
+    transform: perspective(2500px) rotateY(180deg) rotateZ(0deg) skewY(0deg) translateZ(0);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+/* Dynamic Traveling Shadow Overlay during Page Flip (1800ms) */
+.flip-traveling-shadow {
+  animation: travelingShadow 1800ms cubic-bezier(0.38, 0.04, 0.22, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes travelingShadow {
+  0% {
+    opacity: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 30%, transparent 60%);
+  }
+  30% {
+    opacity: 0.6;
+    background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, transparent 75%);
+  }
+  50% {
+    opacity: 0.8;
+    background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.08) 75%, transparent 100%);
+  }
+  75% {
+    opacity: 0.55;
+    background: linear-gradient(to right, transparent 15%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.1) 85%);
+  }
+  100% {
+    opacity: 0;
+    background: linear-gradient(to right, transparent 40%, rgba(0,0,0,0.05) 90%);
+  }
+}
+
+/* Custom Scrollbar for delicate look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(240, 235, 225, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.7);
+}
+
+/* Theatrical Crimson Velvet Curtains */
+.velvet-curtain-fabric {
+  background-color: #660C18;
+  background-image:
+    linear-gradient(90deg, 
+      rgba(40, 4, 8, 0.95) 0%, 
+      rgba(110, 15, 27, 0.9) 12%, 
+      rgba(165, 28, 45, 0.85) 25%, 
+      rgba(80, 8, 16, 0.95) 38%, 
+      rgba(145, 22, 38, 0.9) 50%, 
+      rgba(45, 4, 10, 0.95) 62%, 
+      rgba(170, 30, 48, 0.85) 75%, 
+      rgba(95, 12, 22, 0.92) 88%, 
+      rgba(35, 3, 7, 0.98) 100%
+    ),
+    radial-gradient(ellipse at 50% 30%, rgba(220, 60, 80, 0.35) 0%, transparent 70%);
+  background-size: 110px 100%, 100% 100%;
+  box-shadow: inset 0 0 120px rgba(15, 2, 4, 0.85);
+}
+
+.gold-bullion-fringe {
+  background: repeating-linear-gradient(
+    90deg,
+    #9A7828 0px,
+    #D4AF37 2px,
+    #FFDF73 4px,
+    #AA771C 6px,
+    #5A420B 8px
+  );
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.theater-stage-glow {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(255, 225, 160, 0.22) 0%,
+    rgba(212, 175, 55, 0.12) 28%,
+    rgba(140, 40, 30, 0.05) 55%,
+    transparent 75%
+  );
+}
+
+/* Responsive FlipBook Constraints for Mobile & Small Screens */
+.stf__parent {
+  max-width: 100vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 767px) {
+  .stf__parent {
+    max-width: calc(100vw - 12px) !important;
+  }
+}
+
+/* ========================================================================= */
+/* VINTAGE DUST & PARCHMENT PARTICLES CSS ANIMATION OVERLAY                  */
+/* Slow-moving, subtle floating motes caught in sunlit library ambient glow  */
+/* ========================================================================= */
+
+@keyframes vintageDustDrift1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.15;
+  }
+  25% {
+    transform: translate3d(8px, -18px, 0) scale(1.1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(-6px, -36px, 0) scale(1.0);
+    opacity: 0.35;
+  }
+  75% {
+    transform: translate3d(10px, -52px, 0) scale(1.15);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(0, -70px, 0) scale(0.9);
+    opacity: 0.1;
+  }
+}
+
+@keyframes vintageDustDrift2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translate3d(-10px, -24px, 0) scale(0.85);
+    opacity: 0.6;
+  }
+  60% {
+    transform: translate3d(6px, -46px, 0) scale(1.1);
+    opacity: 0.3;
+  }
+  85% {
+    transform: translate3d(-4px, -65px, 0) scale(0.95);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(4px, -85px, 0) scale(0.8);
+    opacity: 0.08;
+  }
+}
+
+@keyframes vintageDustDrift3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+    opacity: 0.1;
+  }
+  35% {
+    transform: translate3d(12px, -28px, 0) scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: translate3d(-8px, -58px, 0) scale(1.2);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(6px, -88px, 0) scale(0.9);
+    opacity: 0.05;
+  }
+}
+
+@keyframes vintageDustPulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.vintage-dust-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 25;
+  contain: layout paint;
+}
+
+.vintage-dust-ambient-veil {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 25%, rgba(212, 175, 55, 0.45) 50%, transparent 100%),
+    radial-gradient(1px 1px at 35% 65%, rgba(230, 200, 140, 0.35) 50%, transparent 100%),
+    radial-gradient(2px 2px at 70% 30%, rgba(212, 175, 55, 0.4) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 75%, rgba(245, 230, 195, 0.38) 50%, transparent 100%),
+    radial-gradient(1px 1px at 55% 45%, rgba(197, 160, 89, 0.3) 50%, transparent 100%);
+  background-size: 100% 100%;
+  animation: vintageDustPulse 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.memory-bank-glow {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 217, 130, 0.25), transparent 35%),
+    radial-gradient(circle at 15% 20%, rgba(251, 188, 93, 0.18), transparent 30%),
+    radial-gradient(circle at 70% 72%, rgba(201, 95, 61, 0.12), transparent 30%);
+  pointer-events: none;
+}
+
+.memory-bank-card {
+  transform-style: preserve-3d;
+  animation: memory-bank-float 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes memory-bank-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate3d(-8px, -10px, 0) rotate(-3deg) scale(1.02);
+  }
+  50% {
+    transform: translate3d(10px, 12px, 0) rotate(2deg) scale(1.04);
+  }
+  75% {
+    transform: translate3d(-12px, 8px, 0) rotate(-4deg) scale(1.02);
+  }
+}
+
+@keyframes memory-bank-sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Office Push Pin Animations */
+@keyframes pinPullOut {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.45));
+  }
+  35% {
+    transform: translateY(-8px) scale(1.08) rotate(-4deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
+  }
+  100% {
+    transform: translateY(-26px) scale(1.18) rotate(-8deg);
+    opacity: 0;
+    filter: drop-shadow(0 12px 14px rgba(0,0,0,0.05));
+  }
+}
+
+@keyframes pinInsert {
+  0% {
+    transform: translateY(-28px) scale(1.22) rotate(-8deg);
+    opacity: 0;
+    filter: drop-shadow(0 14px 16px rgba(0,0,0,0.1));
+  }
+  50% {
+    transform: translateY(-5px) scale(1.06) rotate(-2deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.35));
+  }
+  78% {
+    transform: translateY(2px) scale(0.97) rotate(1deg);
+    opacity: 1;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.45));
+  }
+}
+
+.animate-pin-pull-out {
+  animation: pinPullOut 0.35s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.animate-pin-insert {
+  animation: pinInsert 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+
+

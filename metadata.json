@@ -1,0 +1,6 @@
+{
+  "name": "Chronicles of Caroline · Birthday Storybook",
+  "description": "A bespoke interactive birthday storybook and vintage keepsake created for Caroline — celebrating our favorite hammer headed foodian.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
